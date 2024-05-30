@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  jaegertracing:
+    image: jaegertracing/all-in-one:1.16.0
+    ports:
+      - "6831:6831/udp"
+      - "16686:16686"
+    networks:
+      - red_demo
+
+  backend:
+    image: villaltajose/back
+    ports:
+      - "8080:8080"
+    environment:
+      JAEGER_AGENT_HOST: jaegertracing
+      JAEGER_AGENT_PORT: 6831
+      JAEGER_SAMPLER_TYPE: const
+      JAEGER_SAMPLER_PARAM: 1
+    networks:
+      - red_demo
+
+  frontend:
+    image: villaltajose/front
+    ports:
+      - "8081:80"
+    networks:
+      - red_demo
+
+  postgresql:
+    image: postgres:latest
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: demo63
+    networks:
+      - red_demo
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8082:80"
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@ups.edu.ec
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_HOST: 0.0.0.0
+    depends_on:
+      - postgresql
+    networks:
+      - red_demo
+  
+  swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "8083:8080"
+    environment:
+      SWAGGER_JSON: /api/openapi.yaml
+    volumes:
+      - ./demo63_back/openapi.yaml:/api/openapi.yaml
+    networks:
+      - red_demo
+
+networks:
+  red_demo:

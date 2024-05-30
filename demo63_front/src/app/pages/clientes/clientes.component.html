@@ -1,0 +1,45 @@
+<div class="w-screen h-screen grid" style="gap: 0">
+
+	<div class="grid-col-6 p-20">
+		<form [formGroup]="form" class="w-full grid">
+			<h2 class="grid-col-12 m-0 display-block">Form Cliente</h2>
+			<input type="number" formControlName="codigo" class="grid-col-12 border-1 border-solid border-gray-500 rounded-sm px-12 py-10 text-base outline-0" placeholder="Codigo">
+			<input type="text" formControlName="dni" class="grid-col-12 border-1 border-solid border-gray-500 rounded-sm px-12 py-10 text-base outline-0" placeholder="DNI">
+			<input type="text" formControlName="nombre" class="grid-col-12 border-1 border-solid border-gray-500 rounded-sm px-12 py-10 text-base outline-0" placeholder="Nombre">
+			<input type="text" formControlName="direccion" class="grid-col-12 border-1 border-solid border-gray-500 rounded-sm px-12 py-10 text-base outline-0" placeholder="Direccion">
+
+			<button type="button" (click)="registrarOperacion()" class="grid-col-12 border-0 text-white text-base bg-theme-primary cursor-pointer rounded-sm px-12 py-10">
+				Registrar
+			</button>
+		</form>
+	</div>
+
+	<div class="grid-col-6 p-20">
+		<h2 class="font-bold m-0 display-block mb-20">Clientes</h2>
+
+		<table class="table w-full">
+			<tr>
+				<td class="px-10 bg-theme-primary text-white py-7">ID</td>
+				<td class="px-10 bg-theme-primary text-white py-7">Nombre</td>
+				<td class="px-10 bg-theme-primary text-white py-7">DNI</td>
+				<td class="px-10 bg-theme-primary text-white py-7">Dirección</td>
+				<td class="px-10 bg-theme-primary text-white py-7"></td>
+			</tr>
+			<tr *ngFor="let c of clientes" class="hover:bg-gray-100">
+				<td class="px-10 py-7 border-b-1 border-solid border-gray-300">{{ c.codigo }}</td>
+				<td class="px-10 py-7 border-b-1 border-solid border-gray-300">{{ c.nombre }}</td>
+				<td class="px-10 py-7 border-b-1 border-solid border-gray-300">{{ c.dni }}</td>
+				<td class="px-10 py-7 border-b-1 border-solid border-gray-300">{{ c.direccion }}</td>
+				<td class="px-10 py-7 border-b-1 border-solid border-gray-300">
+					<button type="button" (click)="seleccionarCliente(c)" class="border-0 text-white text-sm bg-green-800 cursor-pointer rounded-sm px-7 py-5 mr-10">
+						Editar
+					</button>
+					<button type="button" (click)="eliminarCliente(c)" class="border-0 text-white text-sm bg-red-700 cursor-pointer rounded-sm px-7 py-5">
+						Eliminar
+					</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+
+</div>

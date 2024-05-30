@@ -1,0 +1,42 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/demo63_front/dist
+/demo63_front/tmp
+/demo63_front/out-tsc
+/demo63_front/bazel-out
+
+# Node
+/demo63_front/node_modules
+/demo63_frontnpm-debug.log
+/demo63_frontyarn-error.log
+
+# IDEs and editors
+/demo63_front/.idea/
+/demo63_front/.project
+/demo63_front/.classpath
+/demo63_front/.c9/
+/demo63_front/*.launch
+/demo63_front/.settings/
+/demo63_front/*.sublime-workspace
+
+# Visual Studio Code
+/demo63_front/.vscode/*
+/demo63_front/!.vscode/settings.json
+/demo63_front/!.vscode/tasks.json
+/demo63_front/!.vscode/launch.json
+/demo63_front/!.vscode/extensions.json
+/demo63_front/.history/*
+
+# Miscellaneous
+/demo63_front/.angular/cache
+/demo63_front/.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
