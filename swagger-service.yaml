@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: swagger
+  namespace: demo63
+spec:
+  ports:
+  - port: 8083
+    targetPort: 8080
+  selector:
+    app: swagger
+  type: LoadBalancer

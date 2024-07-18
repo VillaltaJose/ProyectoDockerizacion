@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin
+  namespace: demo63
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+      - name: pgadmin
+        image: dpage/pgadmin4
+        env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          value: "admin@ups.edu.ec"
+        - name: PGADMIN_DEFAULT_PASSWORD
+          value: "admin"
+        - name: PGADMIN_LISTEN_HOST
+          value: "0.0.0.0"
+        ports:
+        - containerPort: 80
